@@ -9,7 +9,7 @@ import fr.gtm.cinema.entities.Film;
 @Repository
 public interface CinemaRepository extends JpaRepository<Film, Long> {
 	
-	@Query("SELECT f FROM Film f JOIN FETCH f.acteurs WHERE f.id = ?1")
-	Film getActeursByFilms(long id);
+	@Query("SELECT f FROM Film f JOIN FETCH f.roles WHERE f.id = ?1")
+	Film getFilmsAndActeursById(long id);
 
 }

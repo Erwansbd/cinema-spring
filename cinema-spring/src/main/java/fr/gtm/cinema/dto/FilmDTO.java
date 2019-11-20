@@ -2,6 +2,7 @@ package fr.gtm.cinema.dto;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.Map;
 
 import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
@@ -10,22 +11,22 @@ import javax.persistence.Id;
 import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.Min;
 
+import fr.gtm.cinema.entities.Acteur;
 import fr.gtm.cinema.entities.Film;
 
-public class FilmDTO implements Serializable{
-	
+public class FilmDTO implements Serializable {
 
 	private long id;
 	private String titre;
 	private String realisateur;
 	private LocalDate dateSortie;
-	private int duree;	// durée en minutes;
+	private int duree; // durée en minutes;
 	private double prixHT;
-	
+
 	public FilmDTO() {
-		
+
 	}
-	
+
 	public FilmDTO(Film film) {
 		id = film.getId();
 		titre = film.getTitre();
@@ -33,6 +34,12 @@ public class FilmDTO implements Serializable{
 		dateSortie = film.getDateSortie();
 		duree = film.getDuree();
 		prixHT = film.getPrixHT();
+	}
+
+	public Film toFilm() {
+		Film film = new Film(titre, realisateur, dateSortie, duree, prixHT);
+		film.setId(id);
+		return film;
 	}
 
 	public long getId() {
@@ -130,6 +137,5 @@ public class FilmDTO implements Serializable{
 			return false;
 		return true;
 	}
-	
-	
+
 }

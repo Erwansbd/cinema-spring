@@ -26,27 +26,29 @@ class CinemaSpringApplicationTests {
 		List<Film> films = repo.findAll();
 		assertNotNull(films);
 		assertTrue(films.size() > 0);
-		System.out.println("\u001B[0m"+" ");
-		System.out.println(
-				"\u001B[32m"+"**********************************************************************************************************************************************************"+"\u001B[0m");
-		System.out.println("\u001B[0m"+" ");
+		System.out.println("\u001B[0m" + " ");
+		System.out.println("\u001B[32m"
+				+ "**********************************************************************************************************************************************************"
+				+ "\u001B[0m");
+		System.out.println("\u001B[0m" + " ");
 		for (Film f : films) {
-			System.out.println("\u001B[31m"+"Film : "+"\u001B[36m"+f.getTitre()+"\u001B[31m"+", Réalisé par : "+"\u001B[36m"+f.getRealisateur()+"\u001B[31m"+", Sortie le : "+"\u001B[36m"+f.getDateSortie()+"\u001B[31m"+", D'un prix de : "+"\u001B[36m"+f.getPrixHT()+" €."+"\u001B[0m");
+			System.out.println("\u001B[31m" + "Film : " + "\u001B[36m" + f.getTitre() + "\u001B[31m"
+					+ ", Réalisé par : " + "\u001B[36m" + f.getRealisateur() + "\u001B[31m" + ", Sortie le : "
+					+ "\u001B[36m" + f.getDateSortie() + "\u001B[31m" + ", D'un prix de : " + "\u001B[36m"
+					+ f.getPrixHT() + " €." + "\u001B[0m");
 		}
-		System.out.println("\u001B[0m"+" ");
-		System.out.println(
-				"\u001B[32m"+"**********************************************************************************************************************************************************"+"\u001B[0m");
-		System.out.println("\u001B[0m"+" ");
+		System.out.println("\u001B[0m" + " ");
+		System.out.println("\u001B[32m"
+				+ "**********************************************************************************************************************************************************"
+				+ "\u001B[0m");
+		System.out.println("\u001B[0m" + " ");
 	}
 
 	@Test
 	void getActeurs() {
-		Film film = repo.getActeursByFilms(2);
-		assertTrue(film.getActeurs().size() > 1);
-		List<Acteur> acteurs = film.getActeurs();
-		for (Acteur a : acteurs) {
-			System.out.println(a.getCivilite() + " " + a.getNom() + " " + a.getPrenom());
-		}
+		Film film = repo.getFilmsAndActeursById(2);
+		assertTrue(film.getRoles().size() > 1);
+		System.out.println(film.getRoles());
 	}
 
 }

@@ -47,13 +47,27 @@ public class Film {
 	@DecimalMin("1.0")
 	private double prixHT;
 
-	@ManyToMany(mappedBy = "films", fetch = FetchType.LAZY)
-	List<Acteur> acteurs = new ArrayList<Acteur>();
-
 	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@JoinTable(name = "film_acteur", joinColumns = @JoinColumn(name = "fk_film"), inverseJoinColumns = @JoinColumn(name = "fk_acteur"))
-	@MapKeyColumn(name="role")
-	private Map<Role, Acteur> roles = new HashMap<Role, Acteur>();
+	@MapKeyColumn(name = "role")
+	private Map<String, Acteur> roles = new HashMap<String, Acteur>();
+
+	public Film() {
+
+	}
+
+	public Film(String titre, String realisateur, LocalDate dateSortie, @Min(1) int duree,
+			@DecimalMin("1.0") double prixHT) {
+		this.titre = titre;
+		this.realisateur = realisateur;
+		this.dateSortie = dateSortie;
+		this.duree = duree;
+		this.prixHT = prixHT;
+	}
+	
+	public void addRole(String role, Acteur acteur) {
+		roles.put(role, acteur);
+	}
 
 	public long getId() {
 		return id;
@@ -103,23 +117,15 @@ public class Film {
 		this.prixHT = prixHT;
 	}
 
-	public List<Acteur> getActeurs() {
-		return acteurs;
-	}
-
-	public void setActeurs(List<Acteur> acteurs) {
-		this.acteurs = acteurs;
-	}
-
-	public Map<Role, Acteur> getRoles() {
+	public Map<String, Acteur> getRoles() {
 		return roles;
 	}
 
-	public void setRoles(Map<Role, Acteur> roles) {
+	public void setRoles(Map<String, Acteur> roles) {
 		this.roles = roles;
 	}
 
-	public void add(Role role, Acteur acteur) {
+	public void add(String role, Acteur acteur) {
 		roles.put(role, acteur);
 	}
 
@@ -127,7 +133,6 @@ public class Film {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((acteurs == null) ? 0 : acteurs.hashCode());
 		result = prime * result + ((dateSortie == null) ? 0 : dateSortie.hashCode());
 		result = prime * result + duree;
 		result = prime * result + (int) (id ^ (id >>> 32));
@@ -149,11 +154,6 @@ public class Film {
 		if (getClass() != obj.getClass())
 			return false;
 		Film other = (Film) obj;
-		if (acteurs == null) {
-			if (other.acteurs != null)
-				return false;
-		} else if (!acteurs.equals(other.acteurs))
-			return false;
 		if (dateSortie == null) {
 			if (other.dateSortie != null)
 				return false;
@@ -182,4 +182,5 @@ public class Film {
 			return false;
 		return true;
 	}
+
 }
