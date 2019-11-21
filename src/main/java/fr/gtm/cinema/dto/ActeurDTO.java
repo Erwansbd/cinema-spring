@@ -20,9 +20,10 @@ public class ActeurDTO {
 	private LocalDate dateNaissace;
 	private LocalDate dateMort;
 
-	public ActeurDTO(){}
-	
-	public ActeurDTO(Acteur acteur){
+	public ActeurDTO() {
+	}
+
+	public ActeurDTO(Acteur acteur) {
 		id = acteur.getId();
 		civilite = acteur.getCivilite();
 		nom = acteur.getNom();
@@ -39,12 +40,12 @@ public class ActeurDTO {
 		this.dateNaissace = dateNaissace;
 		this.dateMort = dateMort;
 	}
-	
+
 	public Acteur toActeur() {
-	Acteur acteur = new Acteur(id, civilite, nom, prenom, dateNaissace, dateMort);	
-	return acteur;
+		Acteur acteur = new Acteur(id, civilite, nom, prenom, dateNaissace, dateMort);
+		return acteur;
 	}
-	
+
 	public long getId() {
 		return id;
 	}
@@ -144,8 +145,5 @@ public class ActeurDTO {
 			return false;
 		return true;
 	}
-	
-	
-	
 
 }

@@ -8,18 +8,17 @@ import java.util.Map;
 import fr.gtm.cinema.entities.Acteur;
 import fr.gtm.cinema.entities.Film;
 
-
-public class FilmDTO implements Serializable{
+public class FilmDTO implements Serializable {
 	private long id;
 	private String titre;
 	private String realisateur;
 	private LocalDate dateSortie;
 	private int duree;
 	private double prixHT;
-	private Map<String, Acteur> role = new HashMap<String, Acteur>();
-	
-	public FilmDTO() {}
-	
+
+	public FilmDTO() {
+	}
+
 	public FilmDTO(Film film) {
 		id = film.getId();
 		titre = film.getTitre();
@@ -28,55 +27,58 @@ public class FilmDTO implements Serializable{
 		duree = film.getDuree();
 		prixHT = film.getPrixHT();
 	}
-	
+
 	public Film toFilm() {
-		Film f = new Film(id,titre,realisateur,dateSortie,prixHT,duree);
+		Film f = new Film(id, titre, realisateur, dateSortie, prixHT, duree);
 		return f;
 	}
-	
+
 	public long getId() {
 		return id;
 	}
+
 	public void setId(long id) {
 		this.id = id;
 	}
+
 	public String getTitre() {
 		return titre;
 	}
+
 	public void setTitre(String titre) {
 		this.titre = titre;
 	}
+
 	public String getRealisateur() {
 		return realisateur;
 	}
+
 	public void setRealisateur(String realisateur) {
 		this.realisateur = realisateur;
 	}
+
 	public LocalDate getDateSortie() {
 		return dateSortie;
 	}
+
 	public void setDateSortie(LocalDate dateSortie) {
 		this.dateSortie = dateSortie;
 	}
+
 	public int getDuree() {
 		return duree;
 	}
+
 	public void setDuree(int duree) {
 		this.duree = duree;
 	}
+
 	public double getPrixHT() {
 		return prixHT;
 	}
+
 	public void setPrixHT(double prixHT) {
 		this.prixHT = prixHT;
-	}
-	
-	public Map<String, Acteur> getRole() {
-		return role;
-	}
-
-	public void setRole(Map<String, Acteur> role) {
-		this.role = role;
 	}
 
 	@Override
@@ -126,7 +128,5 @@ public class FilmDTO implements Serializable{
 			return false;
 		return true;
 	}
-	
-	
-	
+
 }
